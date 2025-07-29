@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Request, Query
+from fastapi import FastAPI, Request, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
-from fastapi.responses import JSONResponse
+from typing import Callable, Awaitable
 
 app = FastAPI(title="Portfolio API", description="Backend for Personal Portfolio", version="1.1.0")
 
@@ -17,7 +17,7 @@ app.add_middleware(
 
 # Logging middleware
 @app.middleware("http")
-async def log_requests(request: Request, call_next):
+async def log_requests(request: Request, call_next: Callable[[Request], Awaitable[Response]]) -> Response:
     response = await call_next(request)
     print(f"Request: {request.method} {request.url} Status: {response.status_code}")
     return response
