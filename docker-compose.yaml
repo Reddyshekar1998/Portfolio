@@ -1,32 +1,26 @@
-version: "3.8"
+version: "3.9"  # You can even remove this as it's deprecated
 
 services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "3000:80"  # React served by Nginx
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: ["npm", "run", "dev"]
     depends_on:
       - backend
 
   backend:
     build:
       context: ./services/main-api
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
-
-
-  # img-to-text:
-  #   build: ./services/img-to-text
-  #   ports:
-  #     - "8001:8080"
-
-  # pdf-extractor:
-  #   build: ./services/pdf-extractor
-  #   ports:
-  #     - "8002:8080"
-
-  # chatbot:
-  #   build: ./services/chatbot
-  #   ports:
-  #     - "8003:8080"
+    volumes:
+      - ./services/main-api:/app
+    working_dir: /app
+    command: ["uvicorn", "portfolio_API:app", "--host", "0.0.0.0", "--port", "8000"]
