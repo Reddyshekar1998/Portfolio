@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"  # React served by Nginx
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./services/main-api
+    ports:
+      - "8000:8000"
+
+
+  # img-to-text:
+  #   build: ./services/img-to-text
+  #   ports:
+  #     - "8001:8080"
+
+  # pdf-extractor:
+  #   build: ./services/pdf-extractor
+  #   ports:
+  #     - "8002:8080"
+
+  # chatbot:
+  #   build: ./services/chatbot
+  #   ports:
+  #     - "8003:8080"
