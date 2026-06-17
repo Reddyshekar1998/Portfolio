@@ -16,11 +16,11 @@ services:
 
   backend:
     build:
-      context: ./services/main-api
+      context: ./services/app
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
-      - ./services/main-api:/app
+      - ./services/app:/app
     working_dir: /app
-    command: ["uvicorn", "portfolio_API:app", "--host", "0.0.0.0", "--port", "8000"]
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
