@@ -121,9 +121,9 @@ app = FastAPI(lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "www.kilari.online",
-        "https://www.kilari.online",
+        "http://localhost:3000",        # Local Next.js dev server
+        "https://www.kilari.online",    # Production with www
+        "https://kilari.online",        # Production apex domain (highly recommended to add)
     ],
     allow_credentials=True,
     allow_methods=["*"],
