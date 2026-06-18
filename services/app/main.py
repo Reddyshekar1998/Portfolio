@@ -105,7 +105,7 @@
 from fastapi import FastAPI
 from app.routes.contact import router
 from contextlib import asynccontextmanager
-from app.database import engine, Base
+from app.core.database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
 
 

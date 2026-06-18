@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from app.database import get_db
+from app.core.database import get_db
 from app.models.portfolio import Contact
 from app.schemas.portfolio import ContactForm
 import resend
