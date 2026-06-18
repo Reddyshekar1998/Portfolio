@@ -6,8 +6,9 @@ from app.database import get_db
 from app.models.portfolio import Contact
 from app.schemas.portfolio import ContactForm
 import resend
+import os
 
-resend.api_key = "re_Z1zjvHff_KJJs8s9TDLs93x9P2U36P9ZW"
+resend.api_key = os.getenv("RESEND_API_KEY")
 
 router = APIRouter()
 
