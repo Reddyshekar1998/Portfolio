@@ -139,8 +139,8 @@ app.include_router(
 
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Hello World"}
 
-print("MAIN.PY LOADED")
+# print("MAIN.PY LOADED")
