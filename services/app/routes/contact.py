@@ -67,11 +67,11 @@ async def create_contact(
     }
 
 
-@router.get("/contacts")
-async def get_contacts(
-    db: AsyncSession = Depends(get_db),
-):
-    result = await db.execute(select(Contact))
+# @router.get("/contacts")
+# async def get_contacts(
+#     db: AsyncSession = Depends(get_db),
+# ):
+#     result = await db.execute(select(Contact))
 
-    contacts = result.scalars().all()
-    return contacts
+#     contacts = result.scalars().all()
+#     return contacts

@@ -107,6 +107,18 @@ from app.routes.contact import router
 from contextlib import asynccontextmanager
 from app.core.database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
+# from fastapi_utilities import repeat_every
+# import httpx
+
+# @repeat_every(seconds=10)  # 600 seconds = 10 minutes
+# async def keep_alive():
+#     async with httpx.AsyncClient() as client:
+#         try:
+#             # Replace with your app's actual live URL
+#             response = await client.get("https://api.kilari.online")
+#             print(f"Ping successful! Status: {response.status_code}")
+#         except Exception as e:
+#             print("Ping failed:", e)
 
 
 @asynccontextmanager
@@ -137,10 +149,14 @@ app.include_router(
     tags=["Contact"]
 )
 
+@app.get("/health")
+def health_check():
+    return {"status": "alive"}
 
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
+@app.get("/")
+async def root():
+    print("Root endpoint accessed")
+    return {"message": "Hello Brossss"}
 
 # print("MAIN.PY LOADED")
